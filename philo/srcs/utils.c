@@ -6,7 +6,7 @@
 /*   By: malrifai <malrifai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 17:45:31 by malrifai          #+#    #+#             */
-/*   Updated: 2025/01/21 22:09:46 by malrifai         ###   ########.fr       */
+/*   Updated: 2025/01/22 19:54:34 by malrifai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,36 +52,39 @@ long long	time_diff(long long past, long long pres)
 	return (pres - past);
 }
 
-void smart_sleep(long long time, t_data *data)
+void	smart_sleep(long long time, t_data *data)
 {
-    long long start_time = timestamp();
-    while (1)
-    {
-        pthread_mutex_lock(&(data->dieded_mutex));
-        if (data->dieded)
-        {
-            pthread_mutex_unlock(&(data->dieded_mutex));
-            break;
-        }
-        pthread_mutex_unlock(&(data->dieded_mutex));
-        if (time_diff(start_time, timestamp()) >= time)
-            break;
-        usleep(100);
-    }
+	long long	start_time;
+
+	start_time = timestamp();
+	while (1)
+	{
+		pthread_mutex_lock(&(data->dieded_mutex));
+		if (data->dieded)
+		{
+			pthread_mutex_unlock(&(data->dieded_mutex));
+			break ;
+		}
+		pthread_mutex_unlock(&(data->dieded_mutex));
+		if (time_diff(start_time, timestamp()) >= time)
+			break ;
+		usleep(100);
+	}
 }
 
-
-void action_print(t_data *data, int id, char *string)
+void	action_print(t_data *data, int id, char *string)
 {
-    pthread_mutex_lock(&(data->writing));
-    pthread_mutex_lock(&(data->dieded_mutex));
-    if (!(data->dieded))
-    {
-        pthread_mutex_unlock(&(data->dieded_mutex));
-        printf("%lli %i %s\n", timestamp() - data->first_timestamp, id + 1, string);
-    }
-    else
-        pthread_mutex_unlock(&(data->dieded_mutex));
-    pthread_mutex_unlock(&(data->writing));
+	pthread_mutex_lock(&(data->writing));
+	pthread_mutex_lock(&(data->dieded_mutex));
+	if (!data->dieded)
+	{
+		pthread_mutex_unlock(&(data->dieded_mutex));
+		printf("%lli %i %s\n", timestamp() - data->first_timestamp, id + 1,
+			string);
+	}
+	else
+	{
+		pthread_mutex_unlock(&(data->dieded_mutex));
+	}
+	pthread_mutex_unlock(&(data->writing));
 }
-

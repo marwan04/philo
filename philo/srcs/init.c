@@ -6,7 +6,7 @@
 /*   By: malrifai <malrifai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 17:05:02 by malrifai          #+#    #+#             */
-/*   Updated: 2025/01/21 20:08:32 by malrifai         ###   ########.fr       */
+/*   Updated: 2025/01/22 20:46:21 by malrifai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 
 int	init_mutex(t_data *data)
 {
-	int i;
+	int	i;
 
 	i = data->nb_philo;
 	while (--i >= 0)
 	{
-		if (pthread_mutex_init(&(data->forks[i]), NULL) || pthread_mutex_init(&(data->philosophers[i].meal_mutex), NULL))
+		if (pthread_mutex_init(&(data->forks[i]), NULL)
+			|| pthread_mutex_init(&(data->philosophers[i].meal_mutex), NULL))
 			return (1);
 	}
 	if (pthread_mutex_init(&(data->writing), NULL))
@@ -28,13 +29,14 @@ int	init_mutex(t_data *data)
 		return (1);
 	if (pthread_mutex_init(&(data->dieded_mutex), NULL))
 		return (1);
-	
+	if (pthread_mutex_init(&(data->all_ate_mutex), NULL))
+		return (1);
 	return (0);
 }
 
 int	init_philosophers(t_data *data)
 {
-	int i;
+	int	i;
 
 	i = data->nb_philo;
 	while (--i >= 0)
