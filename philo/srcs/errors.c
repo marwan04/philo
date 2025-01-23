@@ -6,7 +6,7 @@
 /*   By: malrifai <malrifai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 18:16:56 by malrifai          #+#    #+#             */
-/*   Updated: 2025/01/22 20:58:42 by malrifai         ###   ########.fr       */
+/*   Updated: 2025/01/23 20:29:35 by malrifai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,21 +44,4 @@ int	ft_strcmp(char *s1, char *s2)
 		i++;
 	}
 	return (s1[i] - s2[i]);
-}
-
-void	validate_print(t_data *data, int id, char *string)
-{
-	pthread_mutex_lock(&(data->writing));
-	pthread_mutex_lock(&(data->dieded_mutex));
-	if (!data->dieded || ft_strcmp(string, "died") == 0)
-	{
-		if (ft_strcmp(string, "died") == 0)
-			data->dieded = 1;
-		pthread_mutex_unlock(&(data->dieded_mutex));
-		printf("%lli %i %s\n", timestamp() - data->first_timestamp, id + 1,
-			string);
-	}
-	else
-		pthread_mutex_unlock(&(data->dieded_mutex));
-	pthread_mutex_unlock(&(data->writing));
 }

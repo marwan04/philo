@@ -6,7 +6,7 @@
 /*   By: malrifai <malrifai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 20:30:13 by malrifai          #+#    #+#             */
-/*   Updated: 2025/01/22 20:21:20 by malrifai         ###   ########.fr       */
+/*   Updated: 2025/01/23 20:27:53 by malrifai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	*p_thread(void *void_philosopher)
 	{
 		if (check_dead(philo) == 1)
 			break ;
-		if (check_dead(philo) == 1)
+		if (check_eat(philo) == 1)
 			break ;
 		if (check_philo(philo) == 1)
 			break ;

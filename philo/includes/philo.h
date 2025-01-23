@@ -6,7 +6,7 @@
 /*   By: malrifai <malrifai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 14:56:37 by malrifai          #+#    #+#             */
-/*   Updated: 2025/01/22 22:43:35 by malrifai         ###   ########.fr       */
+/*   Updated: 2025/01/23 20:32:06 by malrifai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,10 @@ int					ft_atoi(const char *str);
 int					check_dead(t_philosopher *philo);
 int					check_eat(t_philosopher *philo);
 int					check_philo(t_philosopher *philo);
+int					ft_strcmp(char *s1, char *s2);
 long long			timestamp(void);
 long long			time_diff(long long past, long long pres);
 void				smart_sleep(long long time, t_data *data);
-void				action_print(t_data *data, int id, char *string);
 void				validate_print(t_data *data, int id, char *string);
 int					simulater(t_data *data);
 void				exit_launcher(t_data *data, t_philosopher *philos);

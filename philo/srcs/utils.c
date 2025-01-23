@@ -6,7 +6,7 @@
 /*   By: malrifai <malrifai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 17:45:31 by malrifai          #+#    #+#             */
-/*   Updated: 2025/01/22 19:54:34 by malrifai         ###   ########.fr       */
+/*   Updated: 2025/01/23 20:32:34 by malrifai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,19 +72,19 @@ void	smart_sleep(long long time, t_data *data)
 	}
 }
 
-void	action_print(t_data *data, int id, char *string)
+void	validate_print(t_data *data, int id, char *string)
 {
 	pthread_mutex_lock(&(data->writing));
 	pthread_mutex_lock(&(data->dieded_mutex));
-	if (!data->dieded)
+	if (!data->dieded || ft_strcmp(string, "died") == 0)
 	{
+		if (ft_strcmp(string, "died") == 0)
+			data->dieded = 1;
 		pthread_mutex_unlock(&(data->dieded_mutex));
 		printf("%lli %i %s\n", timestamp() - data->first_timestamp, id + 1,
 			string);
 	}
 	else
-	{
 		pthread_mutex_unlock(&(data->dieded_mutex));
-	}
 	pthread_mutex_unlock(&(data->writing));
 }
