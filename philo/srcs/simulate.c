@@ -6,7 +6,7 @@
 /*   By: malrifai <malrifai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 20:30:13 by malrifai          #+#    #+#             */
-/*   Updated: 2025/01/23 20:27:53 by malrifai         ###   ########.fr       */
+/*   Updated: 2025/01/25 23:21:51 by malrifai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ void	death_checker(t_data *data, t_philosopher *philos)
 			}
 			pthread_mutex_unlock(&(philos[i].meal_mutex));
 		}
+		check_meal(philos);
 		if (check_eat(philos) == 1)
 			break ;
 		usleep(1000);

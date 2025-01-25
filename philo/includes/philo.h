@@ -6,7 +6,7 @@
 /*   By: malrifai <malrifai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 14:56:37 by malrifai          #+#    #+#             */
-/*   Updated: 2025/01/23 20:32:06 by malrifai         ###   ########.fr       */
+/*   Updated: 2025/01/25 23:21:08 by malrifai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,6 @@ void				smart_sleep(long long time, t_data *data);
 void				validate_print(t_data *data, int id, char *string);
 int					simulater(t_data *data);
 void				exit_launcher(t_data *data, t_philosopher *philos);
+void				check_meal(t_philosopher *philo);
 
 #endif
